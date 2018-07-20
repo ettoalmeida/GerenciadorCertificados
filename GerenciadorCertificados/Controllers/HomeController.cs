@@ -15,6 +15,7 @@ using GerenciadorCertificados.Services;
 
 namespace GerenciadorCertificados.Controllers
 {
+    [Route("Home")]
     public class HomeController : Controller
     {
         private EmailService EmailService;
@@ -31,6 +32,7 @@ namespace GerenciadorCertificados.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
+        [Route("EnviarCertificados")]
         public async Task<ActionResult> EnviarCertificados(string Participantes, string Texto, string Background, string Html)
         {
             try
@@ -83,21 +85,24 @@ namespace GerenciadorCertificados.Controllers
                                 string modeloTexto = Html;
                                 string[] dadosParticipante = linhas[i].Split('\t');
 
-                                //Substituir tags pelos dados do Participante
-                                foreach (Tag tag in tagsUtilizadas)
+                                if (!string.IsNullOrEmpty(dadosParticipante[0])) //Ignorar linha vazia
                                 {
-                                    modeloTexto = modeloTexto.Replace(tag.Nome, dadosParticipante[tag.Indice]);
+                                    //Substituir tags pelos dados do Participante
+                                    foreach (Tag tag in tagsUtilizadas)
+                                    {
+                                        modeloTexto = modeloTexto.Replace(tag.Nome, dadosParticipante[tag.Indice]);
+                                    }
+
+                                    var bytesImg = Convert.FromBase64String(Background); //Obter array de bytes da imagem de fundo
+                                    var bytesPdf = GerarPdfPeloHtml(modeloTexto, bytesImg); //Obter array de bytes do PDF do Certificado
+
+                                    HttpStatusCode statusCode = await this.EmailService.EnviarEmailAsync(dadosParticipante[3], dadosParticipante[0], bytesPdf);
+
+                                    if (statusCode == HttpStatusCode.Accepted)
+                                        emailsSucesso = emailsSucesso + dadosParticipante[3] + " | ";
+                                    else
+                                        emailsFalha = emailsFalha + dadosParticipante[3] + " | ";
                                 }
-
-                                var bytesImg = Convert.FromBase64String(Background); //Obter array de bytes da imagem de fundo
-                                var bytesPdf = GerarPdfPeloHtml(modeloTexto, bytesImg); //Obter array de bytes do PDF do Certificado
-
-                                HttpStatusCode statusCode = await this.EmailService.EnviarEmailAsync(dadosParticipante[3], dadosParticipante[0], bytesPdf);
-
-                                if (statusCode == HttpStatusCode.Accepted)
-                                    emailsSucesso = emailsSucesso + dadosParticipante[3] + " | ";
-                                else
-                                    emailsFalha = emailsFalha + dadosParticipante[3] + " | ";
                             }
 
                             //Tratamento de mensagens de retorno do envio dos Certificados
@@ -108,7 +113,7 @@ namespace GerenciadorCertificados.Controllers
                             else if (string.IsNullOrEmpty(emailsFalha)) //Operação realizada com sucesso
                             {
                                 emailsSucesso = emailsSucesso.Substring(0, emailsSucesso.Length - 3);
-                                retorno.Data = new { Sucesso = false, Mensagem = "Mandamos com sucesso os certificados para o(s) email(s): " + emailsSucesso };
+                                retorno.Data = new { Sucesso = true, Mensagem = "Mandamos com sucesso os certificados para o(s) email(s): " + emailsSucesso };
                             }
                             else if (string.IsNullOrEmpty(emailsSucesso)) //Nenhum e-mail foi enviado
                             {

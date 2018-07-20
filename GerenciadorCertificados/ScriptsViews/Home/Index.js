@@ -72,14 +72,14 @@
 
         $.ajax({
             type: "POST",
-            url: 'Home/EnviarCertificados',
+            url: '../Home/EnviarCertificados',
             data: { Participantes: participantes, Texto: textoCertificado, Background: backgroundCertificado, Html: htmlCertificado },
             dataType: 'text',
             success: function (data) {
                 var retorno = JSON.parse(data);
                 if (retorno.Sucesso) {
                     $('#modal-sucesso-texto').text(retorno.Mensagem);
-                    $('#modal-sucesso').modal('show');
+                    $('#modal-sucesso').modal('show');    
                 } else {
                     $('#modal-erro-texto').text(retorno.Mensagem);
                     $('#modal-erro').modal('show');
