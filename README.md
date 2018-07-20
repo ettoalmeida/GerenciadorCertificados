@@ -19,7 +19,7 @@ Foram utilizados os seguintes componentes externos que podem ser instalados com 
 PM> Install-Package bootstrap
 ```
 
-* [HtmlRendered.PdfSharp](https://www.nuget.org/packages/HtmlRenderer.PdfSharp/1.5.0.6) - Biblioteca de manipulação de PDF
+* [HtmlRenderer.PdfSharp](https://www.nuget.org/packages/HtmlRenderer.PdfSharp/1.5.0.6) - Biblioteca de manipulação de PDF
 
 ```
 PM> Install-Package HtmlRenderer.PdfSharp -Version 1.5.0.6
