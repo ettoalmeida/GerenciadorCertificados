@@ -1,0 +1,121 @@
+﻿
+/* #region Default CSS */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* #endregion */
+
+/* #region TEMPLATES Even3 */
+
+.bg-dark-even3 {
+    background-color: #0C2639;
+}
+
+.color-dark-even3 {
+    color: #0C2639;
+}
+
+.badge-even3 {
+    color: #fff;
+    background-color: #288BE4;
+}
+
+.border-even3 {
+    border: 1px solid #288BE4 !important;
+}
+
+.color-even3 {
+    color: #288BE4;
+}
+
+/* #endregion */
+
+/* #region SECTION Elements */
+
+section{
+    margin-top: 20px;
+}
+
+/*#endregion*/
+
+/* #region CRIAR MODELO */
+
+#criar-modelo-page {
+    background-position-x: left;
+    background-position-y: top;
+    background-size: 100% 100%;
+}
+
+.row-criar-modelo {
+    background-color: #eee;
+}
+
+div.page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    margin-top: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.2);
+}
+
+    div.page[size="A4"] {
+        width: 21cm;
+        height: 29.7cm;
+    }
+
+        div.page[size="A4"][layout="paisagem"] {
+            width: 29.7cm;
+            height: 21cm;
+        }
+
+/* #endregion */
+
+/* #region IMPORTAR PARTICIPANTES */
+
+#importar-participantes-textarea {
+    width: 100%;
+    height: 600px;
+}
+
+/* #endregion */
+
+/* #region ALIGNS e etc */
+.pad-top-20 {
+    padding-top: 20px;
+}
+
+.pad-bot-10 {
+    padding-bottom: 10px;
+}
+
+.align-right {
+    text-align: right;
+}
+
+/* #endregion */
+
+/* #region MODALS */
+
+#modal-sucesso-texto,
+#modal-erro-texto {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+/* #endregion */

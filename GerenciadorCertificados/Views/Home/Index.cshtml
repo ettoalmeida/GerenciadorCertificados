@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Gerenciador de Certificados";
+}
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/ScriptsViews/Home/Index.js")"></script>
+}
+
+<section id="criar-modelo">
+    <div class="row no-gutters">
+        <p class="h4 section-title color-dark-even3">
+            <span class="badge badge-even3">1</span> Criar Modelo
+            <small class="text-muted">Edite o layout do certificado no quadro abaixo</small>
+        </p>
+    </div>
+    <div class="row no-gutters pad-top-20 pad-bot-10">
+        <div class="col">
+            <div class="btn-group" role="group">
+                <button type="button" id="btn-undo" class="btn btn-outline-dark" title="Desfazer"><i class="fas fa-undo-alt"></i></button>
+                <button type="button" id="btn-redo" class="btn btn-outline-dark" title="Refazer"><i class="fas fa-redo-alt"></i></button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" id="btn-negrito" class="btn btn-outline-dark" title="Negrito"><i class="fas fa-bold"></i></button>
+                <button type="button" id="btn-italico" class="btn btn-outline-dark" title="Itálico"><i class="fas fa-italic"></i></button>
+                <button type="button" id="btn-sublinhado" class="btn btn-outline-dark" title="Sublinhado"><i class="fas fa-underline"></i></button>
+                <button type="button" id="btn-aumentar-texto" class="btn btn-outline-dark" title="Aumentar texto"><i class="fas fa-sort-up"></i><i class="fas fa-font"></i></button>
+                <button type="button" id="btn-diminuir-texto" class="btn btn-outline-dark" title="Diminuir texto"><i class="fas fa-sort-down"></i><i class="fas fa-font"></i></button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" id="btn-alinhar-esquerda" class="btn btn-outline-dark" title="Alinhar à esquerda"><i class="fas fa-align-left"></i></button>
+                <button type="button" id="btn-centralizar" class="btn btn-outline-dark" title="Centralizar"><i class="fas fa-align-center"></i></button>
+                <button type="button" id="btn-alinhar-direita" class="btn btn-outline-dark" title="Alinhar à direita"><i class="fas fa-align-right"></i></button>
+                <button type="button" id="btn-justificar" class="btn btn-outline-dark" title="Justificar"><i class="fas fa-align-justify"></i></button>
+            </div>
+        </div>
+        <div class="col align-right">
+            <label class="btn btn-outline-dark">Anexar imagem de fundo<input type="file" id="input-imagem-fundo" accept=".jpg,.jpeg,.png" style="display: none"></label>
+            <a href="https://materiais.even3.com.br/templates-de-certificados" target="_blank">Dica: Templates de Certificados</a>
+        </div>
+    </div>
+    <div class="row no-gutters row-criar-modelo">
+        <div class="page" id="criar-modelo-page" layout="paisagem" size="A4" contenteditable="true">
+            <br><br><br><br><br><br><br><br>
+            <div style="text-align: center;"><b style=""><font size="7">CERTIFICADO</font></b></div><div style="text-align: center;">
+            <br></div><div style="text-align: center;"><br></div>
+            <div style="text-align: center;"><font size="5">Este é um texto de exemplo do seu Certificado.</font></div>
+            <div style="text-align: center;"><font size="4"><br></font></div>
+            <div style="text-align: center;"><font size="4">Você pode <b>formatar livremente</b> a <u>fonte </u>e a <u>imagem de fundo</u> através dos <i>botões acima</i>.</font></div>
+            <div style="text-align: center;"><font size="4">Além de poder incluir dados dinâmicos com o uso de tags, que estão associadas&nbsp;</font></div>
+            <div style="text-align: center;"><font size="4">ao conteúdo do quadro abaixo. Basta incluir o <b>{{nome do cabeçalho}}</b> entre chaves</font></div>
+            <div style="text-align: center;"><font size="4">que o sistema incluirá as informações automaticamente na geração dos certificados.</font></div>
+            <div style="text-align: center;"><font size="4"><br></font></div><div style="text-align: center;"><font size="4"><br></font></div>
+            <div style="text-align: center;"><font size="4">Vamos começar? Agora pode apagar esse texto e escrever o seu.</font></div>
+        </div>
+    </div>
+</section>
+
+<section id="importar-participantes" class="pad-top-20">
+    <div class="row no-gutters">
+        <p class="h4 section-title color-dark-even3">
+            <span class="badge badge-even3">2</span> Importar Participantes
+            <small class="text-muted">Copie o conteúdo da planilha Excel, incluindo os cabeçalhos, e cole abaixo</small>
+        </p>
+    </div>
+    <div class="row no-gutters pad-top-20 pad-bot-10">
+        <textarea id="importar-participantes-textarea"></textarea>
+    </div>
+</section>
+
+
+<section id="enviar-certificados" class="pad-top-20">
+    <div class="row no-gutters">
+        <p class="h4 section-title color-dark-even3">
+            <span class="badge badge-even3">3</span> Enviar Certificados
+            <small class="text-muted">Envia o Certificado criado no passo 1 para os participantes importados no passo 2</small>
+        </p>
+    </div>
+    <div class="row no-gutters pad-top-20 pad-bot-10">
+        <button id="btn-enviar-certificados" class="btn btn-outline-dark" title="Enviar Certificados por e-mail"><i class="fas fa-envelope"></i> Enviar por e-mail</button>
+    </div>
+</section>

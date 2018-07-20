@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark-even3">
+        <a class="navbar-brand" href="#">Gerenciador de Certificados</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#criar-modelo">Criar Modelo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#importar-participantes">Importar Participantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#enviar-certificados">Enviar Certificados</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid body-content">
+        @RenderBody()
+
+        <div class="modal fade" id="modal-sucesso" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="text-align:center">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <i class="far fa-check-circle" style="color:green; font-size:80px"></i>
+                        <div><label id="modal-sucesso-texto"></label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-erro" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="text-align:center">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <i class="far fa-times-circle" style="color:red; font-size:80px"></i>
+                        <div><label id="modal-erro-texto"></label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Gerenciador de Certificados</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $('.navbar-nav .nav-link').on('click', function () {
+            $('.navbar-nav .nav-link').removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
+</body>
+</html>
